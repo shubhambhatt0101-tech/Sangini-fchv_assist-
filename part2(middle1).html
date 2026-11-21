@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontline Health Workers — The Problem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg-page: #f9f5ee;
+      --bg-card: #f5efe4;
+      --border-card: #e5ddd0;
+      --text-primary: #272522;
+      --text-secondary: #5e5952;
+      --text-muted: #8a8379;
+      --accent-green: #2c7a4b;
+      --font-serif: "Newsreader", Georgia, serif;
+      --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      padding: 64px 24px 96px;
+    }
+
+    .container {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    /* Section Header */
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    h1, h2 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      color: var(--text-primary);
+      letter-spacing: -0.015em;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 3.6vw, 2.5rem);
+      line-height: 1.18;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 2.8vw, 1.95rem);
+      line-height: 1.22;
+      margin-bottom: 14px;
+    }
+
+    .lead {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      max-width: 62ch;
+      margin-bottom: 10px;
+    }
+
+    .source-note {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    /* 2x2 Card Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 76px;
+    }
+
+    .info-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      padding: 22px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .card-header svg {
+      width: 15px;
+      height: 15px;
+      color: var(--accent-green);
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .card-footer {
+      border-top: 1px solid var(--border-card);
+      padding-top: 12px;
+    }
+
+    .metric-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--accent-green);
+      letter-spacing: -0.01em;
+    }
+
+    .metric-context {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      line-height: 1.35;
+    }
+
+    .card-source {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+
+    /* Next Section Preview */
+    .next-section .lead {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 640px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <!-- Problem Section -->
+    <section>
+      <p class="eyebrow">The Problem</p>
+      <h1>Frontline health workers carry the system, but lack the tools.</h1>
+      <p class="lead">
+        Over 52,000 FCHVs in Nepal are the first point of contact for rural maternal and child health. They work without digital records, without follow-up systems, and without a structured way to hand patients to the next level of care.
+      </p>
+      <p class="source-note">Source: PMC / NCBI, published FCHV study, 2019</p>
+
+      <div class="cards-grid">
+        <!-- Card 1 -->
+        <article class="info-card">
+          <div>
+            <div class="card-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="8" y1="13" x2="16" y2="13" />
+                <line x1="8" y1="17" x2="13" y2="17" />
+              </svg>
+              <h3 class="card-title">Fragmented patient memory</h3>
+            </div>
+            <p class="card-desc">
+              No reliable record of a mother or child's history across visits. Everything depends on paper registers and personal memory.
+            </p>
+          </div>
+          <div class="card-footer">
+            <p class="metric-label">FCHVs Across Nepal</p>
+            <div class="metric-row">
+              <span class="metric-value">52,000+</span>
+              <span class="metric-context">managing maternal and child health with no digital longitudinal record at community level</span>
+            </div>
+            <p class="card-source">Source: PMC / NCBI, published FCHV study, 2019</p>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="info-card">
+          <div>
+            <div class="card-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              <h3 class="card-title">Missed follow-ups</h3>
+            </div>
+            <p class="card-desc">
+              Pregnant women miss antenatal visits. Children miss vaccination schedules. There is no automated tracking or reminder system at field level.
+            </p>
+          </div>
+          <div class="card-footer">
+            <p class="metric-label">SDG Maternal Health Target</p>
+            <div class="metric-row">
+              <span class="metric-value">Off-track</span>
+              <span class="metric-context">Nepal has not met targets for maternal survival</span>
+            </div>
+            <p class="card-source">Source: WHO Nepal, April 2025</p>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="info-card">
+          <div>
+            <div class="card-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <h3 class="card-title">Late risk detection</h3>
+            </div>
+            <p class="card-desc">
+              Danger signs detected too late. No structured decision support for field workers in the critical early window.
+            </p>
+          </div>
+          <div class="card-footer">
+            <p class="metric-label">Maternal Mortality Rate, Nepal</p>
+            <div class="metric-row">
+              <span class="metric-value">~142</span>
+              <span class="metric-context">deaths per 100,000 live births</span>
+            </div>
+            <p class="card-source">Source: WHO modelled estimate, 2023</p>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="info-card">
+          <div>
+            <div class="card-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="17 1 21 5 17 9" />
+                <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+                <polyline points="7 23 3 19 7 15" />
+                <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+              </svg>
+              <h3 class="card-title">Weak referral flow</h3>
+            </div>
+            <p class="card-desc">
+              No structured handoff between village and health facility. Patients arrive at hospitals without history. Care starts from zero.
+            </p>
+          </div>
+          <div class="card-footer">
+            <p class="metric-label">Neonatal Mortality Rate, Nepal</p>
+            <div class="metric-row">
+              <span class="metric-value">16.6 to 21</span>
+              <span class="metric-context">deaths per 1,000 live births</span>
+            </div>
+            <p class="card-source">Source: WHO 2025 / NDHS 2022</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Human Cost Section -->
+    <section class="next-section">
+      <p class="eyebrow">The Human Cost</p>
+      <h2>When continuity breaks, the journey to care starts too late.</h2>
+      <p class="lead">
+        These are not edge cases. In Nepal's Far-Western hills, mothers still deliver on the road to the health post. The gap is not awareness; it is a missing thread of tracking, risk recognition and coordinated referral.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

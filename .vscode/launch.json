@@ -1,0 +1,14 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open part1(main).html",
+            "file": "c:\\Users\\Asus\\OneDrive\\TOC_exercise\\new.project(2026-Sangani)\\day1(main-front)\\part1(main).html"
+        }
+    ]
+}
