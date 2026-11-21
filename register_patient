@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Patient Registration — FCHV_assist</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Mono:wght@500&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --page: #537ABF;
+  --card: #D5E2F5;
+  --panel: #C5D4F3;
+  --field: #EBF6FC;
+  --red: #E41A1A;
+  --red-dark: #B91212;
+  --ink: #0B1530;
+  --ink2: #33415F;
+  --muted: #5B6B8C;
+  --on-page: #E4ECFA;
+  --edge: rgba(40,70,130,0.20);
+  --edge-strong: rgba(40,70,130,0.38);
+  --ok: #17694F;
+  --r: 12px; --rsm: 9px; --rlg: 20px;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); background: var(--page); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', system-ui, sans-serif;
+  background: var(--page); color: var(--ink);
+  min-height: 100vh; padding: 20px 16px 40px;
+}
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+.container { max-width: 560px; margin: 0 auto; width: 100%; position: relative; }
+
+/* Brand block, centred above the card */
+.brand { text-align: center; padding: 8px 0 22px; }
+.logo-mark {
+  width: 44px; height: 44px; border-radius: 13px; background: var(--red);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 700; color: #fff; font-family: 'DM Mono', monospace;
+  box-shadow: 0 6px 16px rgba(120,10,10,0.30);
+}
+.logo-name { font-size: 26px; font-weight: 700; letter-spacing: -0.6px; margin-top: 10px; color: var(--ink); }
+.logo-name span { color: var(--red); }
+.brand-sub { font-size: 13px; color: var(--on-page); margin-top: 4px; font-family: 'Noto Sans Devanagari', sans-serif; }
+
+.btn-logout {
+  position: absolute; top: 4px; right: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 13px; border-radius: var(--rsm);
+  border: 1.5px solid rgba(255,255,255,0.45); background: rgba(255,255,255,0.12);
+  font-size: 12px; font-weight: 600; color: #fff;
+  cursor: pointer; transition: background .15s, color .15s;
+  font-family: 'Noto Sans Devanagari', sans-serif; text-decoration: none; white-space: nowrap;
+}
+.btn-logout:hover { background: #fff; color: var(--red); }
+.btn-logout svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+.card {
+  background: var(--card); border: 1px solid var(--edge);
+  border-radius: var(--rlg); padding: 28px;
+  box-shadow: 0 14px 44px rgba(25,40,100,0.38);
+}
+.card-title { font-size: 19px; font-weight: 700; color: var(--ink); font-family: 'Noto Sans Devanagari', sans-serif; }
+.card-hint { font-size: 13px; color: var(--muted); margin: 4px 0 20px; font-family: 'Noto Sans Devanagari', sans-serif; line-height: 1.6; }
+
+.tabs {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px;
+  background: var(--panel); border-radius: var(--r); margin-bottom: 24px;
+}
+.tab {
+  font-size: 13px; font-weight: 600; padding: 10px 12px; border-radius: 9px;
+  border: none; color: var(--ink2); cursor: pointer; background: transparent;
+  font-family: 'Noto Sans Devanagari', sans-serif; transition: background .15s, color .15s;
+}
+.tab:hover { background: rgba(255,255,255,0.45); }
+.tab.active { background: var(--red); color: #fff; box-shadow: 0 3px 10px rgba(228,26,26,0.30); }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.id-display {
+  background: var(--panel); border: 1px solid var(--edge-strong);
+  border-radius: var(--r); padding: 12px 16px; margin-bottom: 20px;
+}
+.id-label { font-size: 12px; color: var(--ink2); font-weight: 600; font-family: 'Noto Sans Devanagari', sans-serif; }
+.id-value { font-size: 20px; font-weight: 500; color: var(--red); font-family: 'DM Mono', monospace; margin-top: 2px; word-break: break-all; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-row { margin-bottom: 16px; }
+.form-label {
+  font-size: 12px; font-weight: 600; color: var(--ink2);
+  margin-bottom: 6px; display: block;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+}
+.required { color: var(--red); margin-left: 2px; }
+.input, .select {
+  width: 100%; padding: 11px 14px; border-radius: var(--rsm);
+  border: 1.5px solid var(--edge); background: var(--field);
+  font-size: 14px; color: var(--ink);
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
+  transition: border-color .15s, box-shadow .15s;
+}
+.input:focus, .select:focus { outline: none; border-color: var(--red); box-shadow: 0 0 0 3px rgba(228,26,26,0.16); }
+.input::placeholder { color: #7C8BA8; }
+
+.radio-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.radio-item { position: relative; }
+.radio-item input[type="radio"] { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.radio-item label {
+  display: block; padding: 9px 16px; border-radius: 999px; cursor: pointer;
+  border: 1.5px solid var(--edge); background: var(--field);
+  font-size: 13px; font-weight: 500; color: var(--ink2);
+  font-family: 'Noto Sans Devanagari', sans-serif; transition: all .15s;
+}
+.radio-item input:checked + label { background: var(--ink); border-color: var(--ink); color: #fff; }
+.radio-item input:focus-visible + label { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+.actions { display: flex; gap: 10px; margin-top: 24px; }
+.btn {
+  padding: 13px 20px; border-radius: var(--r); border: none;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  transition: transform .15s, box-shadow .15s, background .15s;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+}
+.btn-primary { background: var(--red); color: #fff; box-shadow: 0 4px 14px rgba(228,26,26,0.35); }
+.btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+.btn-secondary { background: var(--field); color: var(--ink2); border: 1.5px solid var(--edge); }
+.btn-secondary:hover { background: #fff; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+
+.search-box { display: flex; gap: 8px; margin-bottom: 16px; }
+.search-box .input { flex: 1; min-width: 0; }
+
+.patient-list { display: flex; flex-direction: column; gap: 8px; }
+.patient-item {
+  padding: 13px 14px; border-radius: var(--r);
+  border: 1.5px solid var(--edge); background: var(--field);
+  cursor: pointer; transition: border-color .15s, background .15s;
+  display: flex; justify-content: space-between; align-items: center; gap: 10px;
+}
+.patient-item:hover { background: #fff; border-color: var(--red); }
+.patient-info { flex: 1; min-width: 0; }
+.patient-name { font-size: 14px; font-weight: 700; color: var(--ink); font-family: 'Noto Sans Devanagari', sans-serif; }
+.patient-meta { font-size: 12px; color: var(--muted); margin-top: 3px; font-family: 'Noto Sans Devanagari', sans-serif; overflow-wrap: anywhere; }
+.btn-select {
+  font-size: 12px; font-weight: 600; padding: 7px 13px; border-radius: 8px;
+  background: var(--red); color: #fff; border: none; cursor: pointer;
+  font-family: 'Noto Sans Devanagari', sans-serif; white-space: nowrap;
+}
+.empty-state { text-align: center; padding: 32px 20px; color: var(--muted); font-size: 14px; line-height: 1.7; font-family: 'Noto Sans Devanagari', sans-serif; }
+
+.toast {
+  position: fixed; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%);
+  background: var(--ink); color: #fff; font-size: 13px; font-weight: 500;
+  padding: 11px 20px; border-radius: 10px; z-index: 1000; display: none;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35); max-width: calc(100% - 32px);
+  font-family: 'Noto Sans Devanagari', sans-serif;
+}
+.toast.on { display: block; animation: toastIn .2s ease; }
+.toast.err { background: var(--red); }
+.toast.ok { background: var(--ok); }
+@keyframes toastIn { from{opacity:0;transform:translateX(-50%) translateY(8px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
+
+@media (max-width: 480px) {
+  .card { padding: 20px 16px; }
+  .grid-2 { grid-template-columns: 1fr; gap: 0; }
+  .btn-logout { position: static; margin: 0 auto 14px; display: flex; width: fit-content; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="/fchv/logout" class="btn-logout" id="logoutBtn" onclick="return confirmLogout()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+      <polyline points="16 17 21 12 16 7"/>
+      <line x1="21" y1="12" x2="9" y2="12"/>
+    </svg>
+    लगआउट
+  </a>
+
+  <div class="brand">
+    <div class="logo-mark">F</div>
+    <div class="logo-name">FCHV<span>_assist</span></div>
+    <div class="brand-sub">नयाँ बिरामी दर्ता गर्नुहोस् वा अवस्थित बिरामी खोज्नुहोस्</div>
+  </div>
+
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button class="tab active" role="tab" onclick="switchTab('new', this)">नयाँ बिरामी</button>
+      <button class="tab" role="tab" onclick="switchTab('search', this)">बिरामी खोज्नुहोस्</button>
+    </div>
+
+    <!-- NEW PATIENT TAB -->
+    <div class="tab-content active" id="tab-new">
+      <div class="card-title">नयाँ बिरामी दर्ता</div>
+      <div class="card-hint">बिरामीको विवरण भर्नुहोस्। * चिन्ह भएका ठाउँ अनिवार्य छन्।</div>
+
+      <div id="patientIdDisplay" class="id-display" style="display:none">
+        <div class="id-label">बिरामी ID</div>
+        <div class="id-value" id="generatedId">—</div>
+      </div>
+
+      <form id="patientForm">
+        <div class="grid-2">
+          <div class="form-row">
+            <label class="form-label" for="patientName">पूरा नाम <span class="required">*</span></label>
+            <input type="text" class="input" id="patientName" placeholder="नाम लेख्नुहोस्" required>
+          </div>
+          <div class="form-row">
+            <label class="form-label" for="phone">फोन नम्बर <span class="required">*</span></label>
+            <input type="tel" class="input" id="phone" placeholder="+977-98..." required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <span class="form-label">उमेर</span>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" id="ageExact" name="ageType" value="exact" checked>
+              <label for="ageExact">सही उमेर</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="ageGroup" name="ageType" value="group">
+              <label for="ageGroup">उमेर समूह</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row" id="ageExactInput">
+          <input type="number" class="input" id="ageValue" aria-label="उमेर (वर्षमा)" placeholder="उमेर (वर्षमा)" min="0" max="120">
+        </div>
+
+        <div class="form-row" id="ageGroupInput" style="display:none">
+          <select class="select" id="ageGroupValue" aria-label="उमेर समूह">
+            <option value="">उमेर समूह छान्नुहोस्</option>
+            <option value="0-59d">0–59 दिन (Neonate)</option>
+            <option value="2m-1y">2 महिना – 1 वर्ष</option>
+            <option value="1-5y">1–5 वर्ष</option>
+            <option value="6-12y">6–12 वर्ष</option>
+            <option value="13-18y">13–18 वर्ष</option>
+            <option value="19-45y">19–45 वर्ष</option>
+            <option value="46-65y">46–65 वर्ष</option>
+            <option value="65+">65+ वर्ष</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <span class="form-label">लिङ्ग</span>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" id="sexMale" name="sex" value="male" checked>
+              <label for="sexMale">पुरुष</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="sexFemale" name="sex" value="female">
+              <label for="sexFemale">महिला</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="sexOther" name="sex" value="other">
+              <label for="sexOther">अन्य</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label" for="location">वडा / स्थान</label>
+          <input type="text" class="input" id="location" placeholder="वडा नं. वा गाउँको नाम">
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary" style="flex:1">बिरामी दर्ता गर्नुहोस्</button>
+          <button type="button" class="btn btn-secondary" onclick="resetForm()">रिसेट</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- SEARCH PATIENT TAB -->
+    <div class="tab-content" id="tab-search">
+      <div class="card-title">बिरामी खोज्नुहोस्</div>
+      <div class="card-hint">नाम, फोन नम्बर वा बिरामी ID बाट खोज्नुहोस्।</div>
+
+      <div class="search-box">
+        <input type="text" class="input" id="searchInput" aria-label="खोज्नुहोस्" placeholder="नाम, फोन नम्बर, वा Patient ID...">
+        <button class="btn btn-primary" onclick="searchPatients()">खोज्नुहोस्</button>
+      </div>
+
+      <div id="searchResults" class="patient-list">
+        <div class="empty-state">खोज्न नाम, फोन नम्बर वा ID लेख्नुहोस्</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+let generatedPatientId = null;
+
+function confirmLogout() {
+  return confirm('के तपाईं साँच्चै लगआउट गर्न चाहनुहुन्छ?');
+}
+
+document.querySelectorAll('input[name="ageType"]').forEach(radio => {
+  radio.addEventListener('change', (e) => {
+    $('ageExactInput').style.display = e.target.value === 'exact' ? 'block' : 'none';
+    $('ageGroupInput').style.display = e.target.value === 'group' ? 'block' : 'none';
+  });
+});
+
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  $('tab-' + tab).classList.add('active');
+  if (tab === 'search') loadAllPatients();
+}
+
+function generatePatientId() {
+  const timestamp = Date.now().toString(36).toUpperCase();
+  const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+  return `HVN-${timestamp}-${random}`;
+}
+
+$('patientForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const name = $('patientName').value.trim();
+  const phone = $('phone').value.trim();
+
+  if (!name || !phone) {
+    toast('कृपया आवश्यक फिल्डहरू भर्नुहोस्!', true);
+    return;
+  }
+
+  const ageType = document.querySelector('input[name="ageType"]:checked').value;
+  const age = ageType === 'exact' ? $('ageValue').value : '';
+  const ageGroup = ageType === 'group' ? $('ageGroupValue').value : '';
+  const sex = document.querySelector('input[name="sex"]:checked').value;
+  const location = $('location').value.trim();
+
+  generatedPatientId = generatePatientId();
+
+  const patientData = {
+    id: generatedPatientId,
+    name, phone, sex, location,
+    age: age ? parseInt(age) : null,
+    ageGroup: ageGroup || null,
+    registeredAt: new Date().toISOString()
+  };
+
+  try {
+    const resp = await fetch('/register_patient', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(patientData)
+    });
+
+    const data = await resp.json();
+
+    if (resp.ok) {
+      $('patientIdDisplay').style.display = 'block';
+      $('generatedId').textContent = generatedPatientId;
+      toast('✓ बिरामी सफलतापूर्वक दर्ता भयो!', false, true);
+
+      sessionStorage.setItem('currentPatient', JSON.stringify(patientData));
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 2000);
+    } else {
+      toast(data.error || 'दर्ता असफल भयो', true);
+    }
+  } catch (err) {
+    toast('सर्भर त्रुटि: ' + err.message, true);
+  }
+});
+
+async function searchPatients() {
+  const query = $('searchInput').value.trim();
+  if (!query) {
+    toast('खोज्नको लागि केही लेख्नुहोस्', true);
+    return;
+  }
+
+  try {
+    const resp = await fetch(`/search_patients?q=${encodeURIComponent(query)}`);
+    const data = await resp.json();
+    displaySearchResults(data.patients || []);
+  } catch (err) {
+    toast('खोजी असफल: ' + err.message, true);
+  }
+}
+
+async function loadAllPatients() {
+  try {
+    const resp = await fetch('/search_patients?q=');
+    const data = await resp.json();
+    displaySearchResults(data.patients || []);
+  } catch (err) {
+    $('searchResults').innerHTML = '<div class="empty-state">बिरामीहरू लोड गर्न सकिएन</div>';
+  }
+}
+
+function displaySearchResults(patients) {
+  const container = $('searchResults');
+
+  if (!patients.length) {
+    container.innerHTML = '<div class="empty-state">कुनै बिरामी फेला परेन</div>';
+    return;
+  }
+
+  container.innerHTML = patients.map(p => `
+    <div class="patient-item" onclick="selectPatient('${p.id}')">
+      <div class="patient-info">
+        <div class="patient-name">${escapeHtml(p.name)}</div>
+        <div class="patient-meta">
+          ID: ${p.id} · ${p.age ? p.age + ' वर्ष' : p.ageGroup || 'उमेर अज्ञात'} ·
+          ${p.sex === 'male' ? 'पुरुष' : p.sex === 'female' ? 'महिला' : 'अन्य'} ·
+          ${escapeHtml(p.phone)}
+        </div>
+      </div>
+      <button class="btn-select">छान्नुहोस्</button>
+    </div>
+  `).join('');
+}
+
+async function selectPatient(patientId) {
+  try {
+    const resp = await fetch(`/get_patient/${patientId}`);
+    const data = await resp.json();
+
+    if (resp.ok) {
+      sessionStorage.setItem('currentPatient', JSON.stringify(data.patient));
+      toast('✓ बिरामी चयन भयो!', false, true);
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1000);
+    } else {
+      toast(data.error || 'बिरामी फेला परेन', true);
+    }
+  } catch (err) {
+    toast('त्रुटि: ' + err.message, true);
+  }
+}
+
+function resetForm() {
+  $('patientForm').reset();
+  $('ageExactInput').style.display = 'block';
+  $('ageGroupInput').style.display = 'none';
+  $('patientIdDisplay').style.display = 'none';
+  generatedPatientId = null;
+}
+
+let toastT = null;
+function toast(msg, err = false, ok = false, ms = 3000) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.className = 'toast on' + (err ? ' err' : ok ? ' ok' : '');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.className = 'toast', ms);
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+</script>
+</body>
+</html>
