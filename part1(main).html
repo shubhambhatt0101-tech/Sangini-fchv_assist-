@@ -13,10 +13,11 @@
   <meta property="og:description" content="Voice-first maternal and field health support for FCHVs, built to work even without internet access.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ragnar52.github.io/Hustlers_hack/">
-  
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="firstpart.css">
 </head>
 <body>
@@ -37,7 +38,7 @@
     </nav>
 
     <div class="content">
-      <p class="eyebrow"><i></i>Field health system · Nepal &amp; India</p>
+      <p class="eyebrow"><i></i>Field health system · Nepal </p>
       <h1>A system that <em>remembers</em>,<br>so health workers don't have to.</h1>
       <p class="lede"><strong>Sangini</strong> helps FCHVs record patient visits, track pregnancies, manage vaccination schedules, and access maternal health protocols through simple voice conversations, even without internet access.</p>
 
@@ -58,7 +59,7 @@
 </header>
 
  
-/*second second part*/
+<!-- second second part-->
 
 
 <section id="problem" class="problem-page">
@@ -193,11 +194,183 @@
 <section id="demo"><div class="wrap"><p>Next section goes here.</p></div></section>
 
 
-/* third part*/
-<div>
+<!-- third part-->
+  <section class="page-section">
+    <!-- Top Section: The Insight -->
+    <section class="insight-block">
+      <p class="eyebrow">The Insight</p>
+      <h1 class="display-heading">
+        The system is not missing data.<br />
+        It is missing continuity.
+      </h1>
+      <div class="insight-copy">
+        <p>
+          Data exists in paper registers, in memory, in scattered notes and health cards.
+          But nothing follows the patient across time, across visits, across providers. Every
+          new encounter starts from zero.
+        </p>
+        <p>
+          LekhaSathi is built to fix the continuity gap, not to add another form to fill in.
+        </p>
+      </div>
+    </section>
 
+    <!-- Middle Section: Fragmented vs Continuous -->
+    <section class="comparison-grid" aria-label="Workflow comparison">
+      <div>
+        <p class="diagram-col-label">Today: Fragmented</p>
+        <div class="diagram-box">
+          <span class="frag-item frag-register">Paper register</span>
+          <span class="frag-item frag-memory">Memory</span>
+          <span class="frag-item frag-card">Health card</span>
+          <span class="frag-item frag-notes">Scattered notes</span>
+          <span class="frag-item frag-visit">Visit record</span>
+          <span class="frag-item frag-handoff">Handoff slip</span>
+        </div>
+      </div>
 
-</div>
+      <div class="diagram-divider" aria-hidden="true">
+        <span class="divider-line"></span>
+        <span class="divider-arrow">&rarr;</span>
+        <span class="divider-line"></span>
+      </div>
 
+      <div>
+        <p class="diagram-col-label">With Sangini: Continuous</p>
+        <div class="diagram-box">
+          <div class="timeline-track"></div>
+
+          <div class="timeline-node node-1">
+            <span class="node-pill below">Registration</span>
+            <span class="timeline-dot"></span>
+          </div>
+
+          <div class="timeline-node node-2">
+            <span class="node-pill above">ANC visit 1</span>
+            <span class="timeline-dot"></span>
+          </div>
+
+          <div class="timeline-node node-3">
+            <span class="node-pill below">ANC visit 2</span>
+            <span class="timeline-dot"></span>
+          </div>
+
+          <div class="timeline-node node-4">
+            <span class="node-pill above">Danger-sign</span>
+            <span class="timeline-dot"></span>
+          </div>
+
+          <div class="timeline-node node-5">
+            <span class="node-pill below">Referral</span>
+            <span class="timeline-dot"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section aria-labelledby="delays-heading">
+      <div class="delays-header">
+        <p class="eyebrow">The Three Delays Model &middot; Thaddeus &amp; Maine, 1994</p>
+        <h2 id="delays-heading" class="display-heading">
+          Every maternal death traces to a delay.<br />
+          LekhaSathi works on all three.
+        </h2>
+      </div>
+
+      <div class="delays-grid">
+        <article class="delay-card">
+          <div class="delay-badge">1</div>
+          <p class="delay-label">Delay 1</p>
+          <h3 class="delay-title">Deciding to seek care</h3>
+          <p class="delay-desc">
+            Continuous tracking + danger-sign recognition surface risk early.
+          </p>
+        </article>
+
+        <article class="delay-card">
+          <div class="delay-badge">2</div>
+          <p class="delay-label">Delay 2</p>
+          <h3 class="delay-title">Reaching a facility</h3>
+          <p class="delay-desc">
+            Coordinated, structured referral shortens the path to care.
+          </p>
+        </article>
+
+        <article class="delay-card">
+          <div class="delay-badge">3</div>
+          <p class="delay-label">Delay 3</p>
+          <h3 class="delay-title">Receiving appropriate care</h3>
+          <p class="delay-desc">
+            The patient's history arrives with her, so care doesn't start from zero.
+          </p>
+        </article>
+      </div>
+    </section>
+  </section>
+
+  <section id="partner" class="partner-section">
+    <div class="partner-content">
+      <p class="partner-eyebrow">Partner with us</p>
+      <h2 class="partner-heading">Partner with us to pilot in field settings.</h2>
+      <p class="partner-subtext">
+        We are looking for NGOs, health programmes, and field partners to co-develop a pilot. If you work with frontline health workers, get in touch.
+      </p>
+
+      <form class="partner-form" action="#" method="POST">
+        <div class="form-group">
+          <label for="partner-name">Name</label>
+          <input
+            type="text"
+            id="partner-name"
+            name="name"
+            placeholder="Your name or organisation"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="partner-email">Contact email</label>
+          <input
+            type="email"
+            id="partner-email"
+            name="email"
+            placeholder="you@organisation.org"
+            required
+          >
+        </div>
+
+        <fieldset class="form-group">
+          <legend>How would you like to work together?</legend>
+          <div class="pill-group">
+            <label class="pill-option">
+              <input type="radio" name="collaboration_type" value="Request a demo">
+              <span>Request a demo</span>
+            </label>
+            <label class="pill-option">
+              <input type="radio" name="collaboration_type" value="NGO collaboration">
+              <span>NGO collaboration</span>
+            </label>
+            <label class="pill-option">
+              <input type="radio" name="collaboration_type" value="Pilot partnership">
+              <span>Pilot partnership</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form-group">
+          <label for="partner-message">Message <span class="optional">(optional)</span></label>
+          <textarea
+            id="partner-message"
+            name="message"
+            rows="4"
+            placeholder="Tell us about your context: who you work with, where you operate."
+          ></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Send message</button>
+      </form>
+    </div>
+  </section>
 </body>
 </html>
