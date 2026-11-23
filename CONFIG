@@ -1,0 +1,10 @@
+YOUR_GEMINI_API_KEY_HERE="AIzaSyCaF3LtXz6mhcyeGzCiil_QKyCOcjsVbh8"
+YOUR_GROQ_API_KEY_HERE="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"
+GEMINI_MODEL   = "gemini-2.5-flash"
+
+# Fallback — Groq (free, if Gemini fails)
+# Get key: console.groq.com → API Keys
+GROQ_API_KEY   = "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"
+GROQ_MODEL     = "llama-3.1-8b-instant"
+
+eleven_labs = "sk_78c3f4d63973da5a985b423b3ffee20e83aec0c58f1b09ab"
