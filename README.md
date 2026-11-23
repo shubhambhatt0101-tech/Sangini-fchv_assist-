@@ -7,9 +7,12 @@
 - **Solution:** `Sangini` provides a focused assistant designed around FCHV workflows to streamline [insert 2–3 core problems your app solves][cite: 1, 2].
 
 ## Key Features
-- **[Feature 1 Name]:** [What it does and how a user interacts with it][cite: 2].
-- **[Feature 2 Name]:** [What it does and how a user interacts with it][cite: 2].
-- **[Feature 3 Name]:** [What it does and how a user interacts with it][cite: 2].
+- **[Feature 1 ]:** [Interactive User Dashboard & Navigation: Centralizes key workflows and data views so users can switch between sections, filter information, and trigger actions from a single interface].
+- **[Feature 2]:** [Guided Workflow & Form Submission: Lets users input details step-by-step with clear validation and instant feedback, streamlining core tasks without clutter].
+- **[Feature 3]:** [Persistent Data & Real-Time Updates: Stores and retrieves records reliably on the backend so changes made by the user reflect immediately across views.
+].
+
+
 
 ## Tech Stack & Project Structure
 - **Frontend / UI:** [e.g., HTML, CSS, JavaScript][cite: 2]
